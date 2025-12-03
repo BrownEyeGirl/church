@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
+
+  <title>CHURCH_</title>
+
+  <!-- CSS stylesheet(s) -->
+  <link rel="stylesheet" type="text/css" href="css/drag.css" />
+
+  <!-- VT323 FONT -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&family=Doto:wght@100..900&family=Lexend+Peta:wght@100..900&family=Rubik+Burned&family=Rubik+Iso&family=Ruthie&family=Syne+Mono&family=Wallpoet&display=swap" rel="stylesheet">
+  
+
+  <!-- p5.min.js is the main p5 library -->
+  <script src="js/libraries/p5.min.js"></script>
+  <!-- p5.sound.min.js allows us to use sound -->
+  <script src="js/libraries/p5.sound.min.js"></script>
+
+  <!-- BACKGROUND VIDEO CODE -->
+  <script src="js/script.js"></script>
+
+</head>
+
+<body>
+    <div id="my-canvas"></div>
+   
+    
+    <!-- FILES -->
+    <div id="p5-container">
+        <div id="overlay-content">
+        
+        <!-- background attempt-->
+                   
+            <div class="files">
+                <!-- <a href="sanctuary.html"><img class="file-b0" src="assets/files/file_sanctuary.png"></a>-->
+                <div id="angel-window-trigger"><img class="file-b1" src="assets/files/garden.png"></div> 
+                <div id="angel2-window-trigger"><img class="file-b1" src="assets/files/angel.png"></div>
+                <div id="god-window-trigger"><img class="file-b1" src="assets/files/god.png"></div>
+                <div id="light-window-trigger"><img class="file-b1" src="assets/files/light.png"></div> 
+               <!-- <a href="prophecy.html"><img class="file-b3" src="assets/files/file_prophecy.png"></a>-->
+                <div id="chapel-window-trigger"><img class="file-b1" src="assets/files/church.png"></div>
+                <div id="filter-window-trigger"><img class="file-b0" src="assets/files/pov.png"></div>
+
+           
+            <a href="assets/zine.pdf"><img class="file-zine" src="assets/files/zine.png"></a>
+            <a href="purgatory.html"><img class="file-esc" src="assets/files/esc1.png"></a>
+        
+            </div>
+            <!-- HEADER -->
+            <h1>Church of the Algorithm</h1>
+            
+
+            <!-- POPUP HANDLERS -->
+            
+                <div class="window" id="angel-window" style="top: 20px; left: 30px; height: 510px">
+                    <div class="window-header" >APPLE_<button class="close-button">X</button> </div>
+                    
+                    <div class="window-content">
+                        <p>The delicious forbidden fruit...</p>
+                        <button id="enterButton">Bite Anyway</button>
+                        <div id="apple-output"></div>
+                    </div>
+                    
+                </div> 
+
+                <div class="window" id="god-window" style="top: 50px; left: 20px; height: 610px">
+                    <div class="window-header">GOD_<button class="close-button">X</button> </div>
+                    <div class="window-content">
+                        <p>click2confess</p>
+                        <div id="god-output"></div>
+                    </div>
+                </div>
+
+                <div class="window" id="chapel-window" style="top: 100px; left: 45px; height: 820px">
+                    <div class="window-header">CHURCH_<button class="close-button">X</button> </div>
+                    <div class="window-content">
+                        <p>move mouse 2 guide static</p>
+                        <div class="canvas-popup" id="chapel-output"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="window" id="angel2-window" style="top: 20px; left: 30px; height: 510px; background-color: #000000;">
+                <div class="window-header" >ANGEL_<button class="close-button">X</button> </div>
+    
+                <div class="window-content">
+                    <div id="angel2-output"></div>
+                </div>
+                
+            </div> 
+
+            <div class="window" id="light-window" style="top: 20px; left: 30px; height: 510px; background-color: black;">
+                <div class="window-header" >LIGHT_<button class="close-button">X</button> </div>
+                
+                <div class="window-content">
+                    <p></p>
+                    <div id="light-output"></div>
+                </div>
+                
+            </div> 
+
+            <div class="window" id="filter-window" style="top: 20px; left: 30px; height: 510px; background-color: black;">
+                <div class="window-header" >FILTER_<button class="close-button">X</button> </div>
+                
+                <div class="window-content">
+                    <p></p>
+                    <div id="filter-output"></div>
+                </div>
+                
+            </div> 
+
+            </div>
+
+        
+        
+
+            <!-- Code to make window draggable -->
+            <script>
+
+
+            let windows = document.querySelectorAll('.window');
+            let activeWindow = null;
+            let maxZIndex = 10;
+
+            windows.forEach(function(windowElem) {
+                windowElem.style.display = 'none';
+                dragElement(windowElem);
+                const closeButton = windowElem.querySelector('.close-button');
+
+            // Bring window to front on click
+            windowElem.addEventListener('mousedown', function() {
+                if (activeWindow) {
+                    activeWindow.classList.remove('active');
+                }
+                activeWindow = windowElem;
+                maxZIndex += 1;
+                activeWindow.style.zIndex = maxZIndex;
+                activeWindow.classList.add('active');
+            });
+
+            // Close button hides window
+            closeButton.addEventListener('click', () => {
+                windowElem.style.display = 'none';
+            });
+        });
+
+        // ---- NEW CODE: OPEN WINDOWS ON TRIGGER CLICK ----
+
+        // Assuming window elements have IDs "angel-window" and "god-window"
+        const angelWin = document.getElementById('angel-window');
+        const angel2Win = document.getElementById('angel2-window');
+        const godWin = document.getElementById('god-window');
+        const chapelWin = document.getElementById('chapel-window');
+        const lightWin = document.getElementById('light-window');
+        const filterWin = document.getElementById('filter-window');
+
+
+        // And triggers like: <div id="angel-window-trigger">...</div>
+        const angelTrig = document.getElementById('angel-window-trigger');
+        const angel2Trig = document.getElementById('angel2-window-trigger');
+        const godTrig = document.getElementById('god-window-trigger');
+        const chapelTrig = document.getElementById('chapel-window-trigger');
+        const lightTrig = document.getElementById('light-window-trigger');
+        const filterTrig = document.getElementById('filter-window-trigger');
+
+
+        if (angelTrig && angelWin) {
+            angelTrig.addEventListener('click', () => {
+                angelWin.style.display = 'block';
+                bringToFront(angelWin);
+            });
+        }
+
+
+        if (angel2Trig && angel2Win) {
+            angel2Trig.addEventListener('click', () => {
+                angel2Win.style.display = 'block';
+                bringToFront(angel2Win);
+            });
+        }
+
+        if (godTrig && godWin) {
+            godTrig.addEventListener('click', () => {
+                godWin.style.display = 'block';
+                bringToFront(godWin);
+            });
+        }
+
+        if (chapelTrig && chapelWin) {
+            chapelTrig.addEventListener('click', () => {
+                chapelWin.style.display = 'block';
+                bringToFront(chapelWin);
+            });
+        }
+
+        if (lightTrig && lightWin) {
+            lightTrig.addEventListener('click', () => {
+                lightWin.style.display = 'block';
+                bringToFront(lightWin);
+            });
+        }
+
+        if (filterTrig && filterWin) {
+            filterTrig.addEventListener('click', () => {
+                filterWin.style.display = 'block';
+                bringToFront(filterWin);
+            }); 
+        }
+
+
+        // Helper function to bring window to front
+        function bringToFront(windowElem) {
+            if (activeWindow) {
+                activeWindow.classList.remove('active');
+            }
+            activeWindow = windowElem;
+            maxZIndex += 1;
+            activeWindow.style.zIndex = maxZIndex;
+            activeWindow.classList.add('active');
+        }
+
+        // ---- DRAGGING FUNCTION ----
+        function dragElement(elmnt) {
+            let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            let dragHandle = elmnt.querySelector('.window-header');
+
+            if (dragHandle) {
+                dragHandle.onmousedown = dragMouseDown;
+            } else {
+                elmnt.onmousedown = dragMouseDown;
+            }
+
+            function dragMouseDown(e) {
+                e.preventDefault();
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                document.onmousemove = elementDrag;
+            }
+
+            function elementDrag(e) {
+                e.preventDefault();
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+                elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+            }
+
+            function closeDragElement() {
+                document.onmouseup = null;
+                document.onmousemove = null;
+            }
+        }
+ </script>
+</body>
+</html>

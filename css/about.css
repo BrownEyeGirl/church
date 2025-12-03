@@ -1,0 +1,109 @@
+
+body {
+  background-color: black;
+/* background-size: 100% auto; /* 100% width, auto height */
+}
+
+h1 {
+    /*font-family: "VT323", monospace;
+    font-weight: 400;
+    font-size: 60px; 
+    font-style: normal;
+     */
+
+
+    font-family: "Ballet", cursive;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-size: 100px; 
+    font-style: normal;
+
+    position: absolute;
+      bottom: 3%; /* Vertically center the rotated h1 */
+      right: 60%; /* Position it on the left side of the page */
+      transform: translateY(-50%) rotate(-90deg); /* Adjust vertical position and rotate */
+      transform-origin: center;
+      white-space: nowrap;
+    order: 0;
+    color: rgb(66, 192, 255);
+}
+
+.cross-ascii {
+  margin-left: 50%; 
+  margin-right: 50%; 
+  z-index: -1;
+  display:block;
+  position: absolute;
+}
+
+.about-txt { /* about text div */
+    width: 50%;
+    margin: 0 auto; /* center div */  
+    margin-top: 0; 
+    height: 100vh; 
+    width: 50vh; 
+    text-align: left; 
+    display: fixed;
+    justify-content: center;
+    align-items: center;
+    padding: 100px;
+    
+  }
+
+  
+  .about-txt h1 {
+    font-family: "Ballet", cursive;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-size: 140px; 
+    font-style: normal;
+
+    position: absolute;
+      bottom: 3%; /* Vertically center the rotated h1 */
+      right: 45%; /* Position it on the left side of the page */
+      transform: translateY(-50%) rotate(-90deg); /* Adjust vertical position and rotate */
+      transform-origin: center;
+      white-space: nowrap;
+    order: 0;
+  
+    color: rgb(144, 144, 144); 
+    text-shadow:
+      0 0 5px rgb(104, 104, 104), /* Smaller, sharper glow */
+      0 0 10px rgb(115, 115, 115), /* Medium glow */
+      0 0 20px rgb(88, 88, 88), /* Larger, softer glow */
+      0 0 40px rgb(58, 58, 58); /* Even larger, softer glow */
+      
+  }
+
+  
+
+
+
+  #typedtext {
+    margin-top: 50%; 
+    font-family: "VT323", monospace;
+    font-weight: 400;
+    font-size: 20px; 
+    word-spacing: 3px; 
+    font-style: normal;
+     /* GLOW */ 
+     color: white; 
+     text-shadow:
+       0 0 5px rgb(228, 228, 228), /* Smaller, sharper glow */
+       0 0 10px rgb(178, 178, 178), /* Medium glow */
+       0 0 20px rgb(78, 78, 78), /* Larger, softer glow */
+       0 0 40px rgb(35, 35, 35); /* Even larger, softer glow */
+      
+  }
+  
+  .enter-button {
+    position: fixed;
+    bottom: 100px;
+    right: 200px;
+    text-align: right;  
+  }
+
+  .enter-key {
+    width: 100px; 
+  }
+
